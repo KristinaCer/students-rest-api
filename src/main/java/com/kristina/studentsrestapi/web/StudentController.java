@@ -23,6 +23,6 @@ public class StudentController {
     public ResponseEntity<List<Student>> getAllStudents(){
         List<Student> studentList = studentService.retrieveStudents();
         //ResponseEntity represents the entire HTTP response and includes the status code, headers and the response body
-        return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 }

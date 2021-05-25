@@ -1,9 +1,7 @@
 package com.kristina.studentsrestapi.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -12,9 +10,14 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "exam_result_id")
+    private List<ExamResult> examResults;
 
-    public Student(Long id, String firstName, String lastName, String email) {
-        this.id = id;
+    public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -24,10 +27,11 @@ public class Student {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
+
     public String getFirstName() {
         return firstName;
     }
