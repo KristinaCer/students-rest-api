@@ -1,7 +1,7 @@
 package com.kristina.studentsrestapi.service;
 
 import com.kristina.studentsrestapi.entity.Student;
-import com.kristina.studentsrestapi.repository.StudentRepository;
+import com.kristina.studentsrestapi.dao.StudentDaoHibernateImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import java.util.List;
 public class StudentService {
 
     public static final Logger log = LoggerFactory.getLogger(StudentService.class);
-    private StudentRepository studentRepository;
+    private StudentDaoHibernateImpl studentDaoHibernateImpl;
     @Autowired
-    public void setStudentRepository(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public void setStudentRepository(StudentDaoHibernateImpl studentDaoHibernateImpl) {
+        this.studentDaoHibernateImpl = studentDaoHibernateImpl;
         log.info("Student REPO created.");
     }
 
     public List<Student> retrieveStudents() {
-        return (List<Student>) studentRepository.findAll();
+        return studentDaoHibernateImpl.findAll();
     }
 }
