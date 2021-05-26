@@ -35,10 +35,8 @@ public class StudentController {
         return student;
     }
 
-    @PostMapping("/students}")
+    @PostMapping("/students")
     public Student addStudent(@RequestBody Student student) {
-        //In case someone pass the id in JASON, set id to 0 to force a save for a new item instead of update
-       student.setId(0l);
         studentService.save(student);
         return student;
     }

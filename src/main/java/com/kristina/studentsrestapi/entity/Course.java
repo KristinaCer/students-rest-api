@@ -4,15 +4,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "course")
 public class Course {
+    @javax.persistence.Id
+    @Column(name = "course_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long courseId;
+    @Column(name = "name")
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "exam_result_id")
     private List<ExamResult> examResults;
 
-    @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Course() {
+    }
+
     public Long getCourseId() {
         return courseId;
     }

@@ -15,7 +15,7 @@ public class StudentDaoHibernateImpl implements StudentsDao {
     private EntityManager entityManager;
 
     @Autowired
-    public StudentDaoHibernateImpl(EntityManager entityManager){
+    public StudentDaoHibernateImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -24,7 +24,7 @@ public class StudentDaoHibernateImpl implements StudentsDao {
         //get current hibernate session
         Session currentSession = entityManager.unwrap(Session.class);
         //create a query
-        List<Student> students  = currentSession.createQuery("from Student").list();
+        List<Student> students = currentSession.createQuery("from Student").list();
         //execute query and get result list
         return students;
     }

@@ -1,14 +1,15 @@
 package com.kristina.studentsrestapi.entity;
-
 import javax.persistence.*;
 
 @Entity
+@Table(name = "city")
 public class City {
+    @Column(name = "city_id")
     private long cityId;
+    @Column(name = "name")
     private String name;
 
-    public City(long cityId, String name) {
-        this.cityId = cityId;
+    public City(String name) {
         this.name = name;
     }
 
