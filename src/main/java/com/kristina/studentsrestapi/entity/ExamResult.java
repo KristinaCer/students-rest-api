@@ -31,5 +31,4 @@ public class ExamResult {
         this.examResult = examResult;
     }
 
-
 }

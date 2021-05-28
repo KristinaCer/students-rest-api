@@ -5,10 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import java.util.List;
-
 
 @Repository
 public class StudentDaoHibernateImpl implements StudentsDao {
@@ -48,5 +46,23 @@ public class StudentDaoHibernateImpl implements StudentsDao {
         Query query = currentSession.createQuery("delete from Student where id = :studentId");
         query.setParameter("studentId", id);
         query.executeUpdate();
+    }
+
+    @Override
+    public List<Student> studentsFromACity(long cityId) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        List<Student> students = currentSession.createQuery(
+                "select st " +
+                        "from Student st " +
+                        "join st.city ct " +
+                        "where ct.cityId =: id", Student.class)
+                .setParameter("id", cityId)
+                .getResultList();
+        return students;
+    }
+
+    @Override
+    public double avgCityResult(long cityId) {
+        return 0;
     }
 }
