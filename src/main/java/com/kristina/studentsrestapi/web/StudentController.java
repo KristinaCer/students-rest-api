@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -26,17 +27,23 @@ public class StudentController {
     }
 
     @GetMapping("/students/{studentId}")
-    public Student getStudent(@PathVariable long studentId) {
+    public ResponseEntity<Student> getStudent(@PathVariable long studentId) {
         var student = studentService.findById(studentId);
         if (student == null) {
             throw new RuntimeException();
         }
-        return student;
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @PostMapping("/students")
-    public Student addStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
         studentService.save(student);
-        return student;
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @GetMapping("/students/city/{cityId}")
+    public ResponseEntity<List<Student>> getStudentsFromCity(@PathVariable long cityId) {
+        List<Student> studentList = studentService.studentsFromCity(cityId);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 }

@@ -5,10 +5,10 @@ import com.kristina.studentsrestapi.entity.Student;
 import java.util.List;
 
 public interface StudentsDao {
-    public List<Student> findAll();
-    public Student findById(long id);
-    public void save (Student student);
-    public void deleteById(long id);
-    public List<Student>studentsFromACity(long cityId);
-    public double avgCityResult(long cityId);
+    List<Student> findAll();
+    Student findById(long id);
+    void save (Student student);
+    void deleteById(long id);
+    List<Student>studentsFromACity(long cityId);
+    double avgCityResult(long cityId);
 }

@@ -9,6 +9,6 @@ public interface StudentService {
     public Student findById(long id);
     public void save (Student student);
     public void deleteById(long id);
-    public List<Student>studentsFromACity(long cityId);
+    public List<Student> studentsFromCity(long cityId);
     public double avgCityResult(long cityId);
 }

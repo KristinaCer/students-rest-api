@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> studentsFromACity(long cityId) {
+    public List<Student> studentsFromCity(long cityId) {
         return studentDaoHibernateImpl.studentsFromACity(cityId);
     }
 
